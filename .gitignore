@@ -1,0 +1,17 @@
+# Model files (too large for GitHub)
+Code/binary_hatespeech_model/
+Code/binary_hatespeech_tokenizer/
+Code/results_binary/
+
+# Python cache
+__pycache__/
+*. pyc
+*.pyo
+
+# Virtual environment
+venv/
+env/
+
+# IDE files
+.vscode/
+.idea/
