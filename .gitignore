@@ -1,7 +1,11 @@
 # Model files (too large for GitHub)
-Code/binary_hatespeech_model/
-Code/binary_hatespeech_tokenizer/
-Code/results_binary/
+binary_hatespeech_model/
+binary_hatespeech_tokenizer/
+multiclass_hatespeech_model/
+multiclass_hatespeech_tokenizer/
+results_binary/
+results_multiclass/
+Code/multiclass_hatespeech_model/
 
 # Python cache
 __pycache__/

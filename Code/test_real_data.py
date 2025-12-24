@@ -2,14 +2,20 @@ from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import pandas as pd
 import torch
 
+import os
+
+# Get the absolute path of the script's directory
+script_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.dirname(script_dir)
+
 # Model ve veriyi yükleme
-model_path = "C:/Users/ayogu/Desktop/Okul/4.Year/1.Semester/NLP/Project/Code/binary_hatespeech_model"
-tokenizer_path = "C:/Users/ayogu/Desktop/Okul/4.Year/1.Semester/NLP/Project/Code/binary_hatespeech_tokenizer"
-file_path = "C:/Users/ayogu/Desktop/Okul/4.Year/1.Semester/NLP/Project/hatespeech_dataset.xlsx"
+model_path = os.path.join(script_dir, "binary_hatespeech_model")
+tokenizer_path = os.path.join(script_dir, "binary_hatespeech_tokenizer")
+file_path = os.path.join(project_root, "hatespeech_dataset.xlsx")
 
 tokenizer = AutoTokenizer.from_pretrained(tokenizer_path)
 model = AutoModelForSequenceClassification.from_pretrained(model_path)
-df = pd.read_excel(file_path, sheet_name="1000 Tweet")
+df = pd.read_excel(file_path, sheet_name="Dengeli Veriseti", header=None)
 
 def predict_message(text):
     inputs = tokenizer(text, return_tensors="pt", truncation=True, padding=True, max_length=128)
@@ -26,9 +32,9 @@ print("Gerçek Dataset ile İkili Model Testi:")
 print("=" * 80)
 
 # Her kategoriden örnekler alalım
-zararsiz_samples = df[df['Etiket'] == 'hiçbiri']['Tweet'].head(5)
-nefret_samples = df[df['Etiket'] == 'nefret']['Tweet'].head(5)
-saldirgan_samples = df[df['Etiket'] == 'saldırgan']['Tweet'].head(5)
+zararsiz_samples = df[df[2] == 'hiçbiri'][1].head(5)
+nefret_samples = df[df[2] == 'nefret'][1].head(5)
+saldirgan_samples = df[df[2] == 'saldırgan'][1].head(5)
 
 print("ZARARSIZ örnekleri:")
 print("-" * 40)
