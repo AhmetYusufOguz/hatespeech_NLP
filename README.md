@@ -11,7 +11,6 @@ A real-time chat application powered by AI and NLP to detect and warn users abou
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Firebase Setup](#firebase-setup)
-- [Backend Setup](#backend-setup)
 - [Running the Application](#running-the-application)
 - [Project Structure](#project-structure)
 - [How It Works](#how-it-works)
@@ -116,8 +115,6 @@ Before you begin, ensure you have the following installed:
 
 - **Firebase Account**
   - Create one at: https://firebase.google.com/
-
-- **Python 3.8+** (for the hate speech detection backend)
 
 - **Code Editor** (recommended: VS Code or Android Studio)
 
@@ -229,103 +226,9 @@ flutterfire configure
 
 This will automatically update your `firebase_options.dart` file.
 
-## 🤖 Backend Setup
-
-The hate speech detection requires a separate Python backend server.
-
-### 1. Set Up Python Backend
-
-Create a new directory for the backend (outside this project):
-
-```bash
-mkdir hate-speech-api
-cd hate-speech-api
-```
-
-### 2. Create Virtual Environment
-
-```bash
-python -m venv venv
-
-# Activate virtual environment
-# Windows:
-venv\Scripts\activate
-# macOS/Linux:
-source venv/bin/activate
-```
-
-### 3. Install Dependencies
-
-```bash
-pip install fastapi uvicorn transformers torch scikit-learn
-```
-
-### 4. Create API Server
-
-Create `main.py`:
-
-```python
-from fastapi import FastAPI
-from pydantic import BaseModel
-from fastapi.middleware.cors import CORSMiddleware
-
-app = FastAPI()
-
-# Enable CORS
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-class TextRequest(BaseModel):
-    text: str
-
-@app.post("/predict")
-async def predict(request: TextRequest):
-    # Implement your NLP model here
-    # This is a placeholder response
-    return {
-        "prediction": "Hiçbiri",
-        "prediction_id": 0,
-        "confidence": 0.95,
-        "is_harmful": False,
-        "description": "No harmful content detected"
-    }
-
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
-```
-
-### 5. Start the Backend Server
-
-```bash
-python main.py
-```
-
-The server should now be running at `http://localhost:8000`
-
-### 6. Configure App to Connect to Backend
-
-Update the host addresses in `lib/services/hate_speech_service.dart` if needed:
-
-- `http://10.0.2.2:8000` - For Android Emulator
-- `http://localhost:8000` - For iOS Simulator
-- `http://YOUR_LOCAL_IP:8000` - For physical devices (replace YOUR_LOCAL_IP)
-
 ## ▶️ Running the Application
 
-### 1. Start Backend Server (in separate terminal)
-
-```bash
-cd hate-speech-api
-python main.py
-```
-
-### 2. Run Flutter App
+### 1. Run Flutter App
 
 #### On Android Emulator/Device:
 
@@ -349,7 +252,7 @@ flutter devices
 flutter run -d <device-id>
 ```
 
-### 3. Build Release Version
+### 2. Build Release Version
 
 #### Android APK:
 
@@ -459,12 +362,11 @@ Response:
 
 ### Host Configuration
 
-The service supports multiple host configurations with automatic fallback:
+The app connects to the hate speech detection API backend. Update the host addresses in `lib/services/hate_speech_service.dart` with your backend URL:
 
-1. Android Emulator: `http://10.0.2.2:8000`
-2. LAN/Physical Device: `http://192.168.1.73:8000`
-
-Update `lib/services/hate_speech_service.dart` with your backend URL.
+- `http://10.0.2.2:8000` - For Android Emulator
+- `http://localhost:8000` - For iOS Simulator  
+- `http://YOUR_LOCAL_IP:8000` - For physical devices
 
 ## 🤝 Contributing
 
@@ -482,7 +384,9 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## 👥 Authors
 
-- Your Name - Initial work
+- **Ahmet Yusuf Oğuz**
+- **Sefa Akgün**
+- **Yusuf Alperen Dönmez**
 
 ## 🙏 Acknowledgments
 
