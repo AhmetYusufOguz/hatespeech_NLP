@@ -1,21 +1,67 @@
-# Model files (too large for GitHub)
-binary_hatespeech_model/
-binary_hatespeech_tokenizer/
-multiclass_hatespeech_model/
-multiclass_hatespeech_tokenizer/
-results_binary/
-results_multiclass/
-Code/multiclass_hatespeech_model/
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.build/
+.buildlog/
+.history
+.svn/
+.swiftpm/
+migrate_working_dir/
 
-# Python cache
-__pycache__/
-*. pyc
-*.pyo
-
-# Virtual environment
-venv/
-env/
-
-# IDE files
-.vscode/
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
 .idea/
+
+# The .vscode folder contains launch configuration and tasks you configure in
+# VS Code which you may wish to be included in version control, so this line
+# is commented out by default.
+#.vscode/
+
+# Flutter/Dart/Pub related
+**/doc/api/
+**/ios/Flutter/.last_build_id
+.dart_tool/
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+/build/
+/coverage/
+
+# Symbolication related
+app.*.symbols
+
+# Obfuscation related
+app.*.map.json
+
+# Android Studio will place build artifacts here
+/android/app/debug
+/android/app/profile
+/android/app/release
+# Firebase and sensitive configuration files
+firebase_options.dart
+firebase.json
+**/google-services.json
+**/GoogleService-Info.plist
+.env
+.env.local
+.env.*.local
+
+# API Keys and Secrets
+lib/config/secrets.dart
+lib/firebase_options.dart
+
+# iOS Pods
+/ios/Pods/
+/ios/Podfile.lock
+
+# macOS
+/macos/Flutter/GeneratedPluginRegistrant.swift
+
+# Web
+/web/firebase-config.js
