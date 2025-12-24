@@ -170,12 +170,13 @@ print(f"Sonuç: {result} (Güven: {confidence:.1%})")
 - [ ] REST API entegrasyonu
 - [ ] Gerçek zamanlı metin analizi
 - [ ] Mobil uygulama entegrasyonu
-- [ ] Çoklu dil desteği
 - [ ] Model performans iyileştirmeleri
 
 ## 👥 Katkıda Bulunanlar
 
-- **Ahmet Yusuf Oğuz** - Proje geliştiricisi
+- **Ahmet Yusuf Oğuz**
+- **Sefa Akgün**
+- **Yusuf Alperen Dönmez**
 
 ## 📄 Lisans
 
